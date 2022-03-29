@@ -4,8 +4,12 @@ import About from './components/pages/About';
 
 function App() {
   return (
-    <Home />
-
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
