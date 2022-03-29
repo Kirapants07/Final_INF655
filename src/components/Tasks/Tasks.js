@@ -12,7 +12,11 @@ const result =taskList.filter((task) =>
   task.title.toLowerCase().includes(search.toLowerCase()))
 
   if (!result || result.length === 0){
-    return <h3>No Tasks</h3>;
+    return (
+      <span>
+       <SearchTask search={search} setSearch={setSearch} />
+        <h1>No Tasks Found</h1>
+     </span>);
   }
 
   return (
