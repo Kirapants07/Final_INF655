@@ -1,9 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
+import TaskContext from '../context/TaskContext';
 import Card from '../shared/Card'
 
-export default function AddTask({handleAdd}) {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+export default function AddTask() {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const {addTask, updateTask, taskEdit} = useContext(TaskContext);
+
+/*     useEffect(() => {
+        if (taskEdit.edit === true) {
+            setTitle(taskEdit.task.title);
+            setDescription(taskEdit.task.description);
+        }
+    }, [taskEdit]); */
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
@@ -20,7 +29,11 @@ export default function AddTask({handleAdd}) {
                 title,
                 description
             };
-            handleAdd(newTask);
+        if (taskEdit.edit === true) {
+            updateTask(taskEdit.task.id, newTask);
+        }else {
+            addTask(newTask);
+        }
             setTitle('');
             setDescription('');
         }
