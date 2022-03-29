@@ -6,11 +6,13 @@ import Footer from './Footer';
 
 export default function Home() {
     return (
-        <div className="container">
+      <>
         <Header />
-        <AddTask />
-        <Tasks />
-        <Footer />
+        <div className="container">
+          <AddTask />
+          <Tasks />
       </div>
+      <Footer />
+      </>
   )
 }

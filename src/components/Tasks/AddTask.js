@@ -7,12 +7,12 @@ export default function AddTask() {
     const [description, setDescription] = useState("");
     const {addTask, updateTask, taskEdit} = useContext(TaskContext);
 
-/*     useEffect(() => {
+    useEffect(() => {
         if (taskEdit.edit === true) {
             setTitle(taskEdit.task.title);
             setDescription(taskEdit.task.description);
         }
-    }, [taskEdit]); */
+    }, [taskEdit]);
 
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
