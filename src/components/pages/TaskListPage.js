@@ -5,12 +5,14 @@ import Header from './Header';
 import Footer from './Footer';
 import Navigation from './Navigation';
 
-export default function Home() {
+export default function TaskListPage() {
     return (
       <>
         <Header />
         <Navigation />
         <div className="container">
+
+          <AddTask />
           <Tasks />
       </div>
       <Footer />

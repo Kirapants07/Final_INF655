@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/pages/Home';
 import About from './components/pages/About';
-import Users from "./components/User/Users";
 import TaskListPage from './components/pages/TaskListPage';
 import { TaskProvider } from "./components/context/TaskContext";
 
@@ -13,7 +12,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/tasklist" element= {<TaskListPage />} />
-          <Route path="/users/:id/:name" element={<Users />} />
         </Routes>
       </BrowserRouter>
     </TaskProvider>
