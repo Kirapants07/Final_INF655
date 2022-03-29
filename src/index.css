@@ -17,10 +17,31 @@ body {
   overflow-y: auto;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  height: 100%;
+  position: fixed;
+  overflow: auto;
+}
+
+li {
+  text-align: center;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
 .container {
   max-width: 768px;
   margin: auto;
   padding: 0 20px;
+  min-height: 70vh;
 }
 
 .header {
@@ -64,7 +85,6 @@ body {
   width: 100px;
   height: 40px;
   cursor: pointer;
-  
 }
 
 .delete,

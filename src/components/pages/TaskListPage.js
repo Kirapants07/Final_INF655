@@ -11,8 +11,6 @@ export default function Home() {
         <Header />
         <Navigation />
         <div className="container">
-
-          <AddTask />
           <Tasks />
       </div>
       <Footer />
