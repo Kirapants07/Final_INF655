@@ -13,7 +13,7 @@ export default function About() {
     <div className="container">
       <Card>
           <h1>About this application</h1>
-          <p>This task manager allows users to add, delete, and search tasks in the Task list.</p>
+          <p>This Movies List Application allows users to view Movie information and create a custom favorite's list.</p>
       </Card>
   </div>
   <Footer />
