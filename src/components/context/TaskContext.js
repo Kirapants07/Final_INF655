@@ -5,6 +5,7 @@ import TaskData from "../Tasks/TaskData";
 const TaskContext = createContext();
 
 export const TaskProvider = ({children}) => {
+
     const [taskList, setTaskList] = useState(TaskData );
     const [taskEdit, setTaskEdit] = useState({
         task: {},
@@ -28,11 +29,11 @@ export const TaskProvider = ({children}) => {
         setTaskList(taskList.filter((task) => task.id !== id));
     };
     
-    const checkTask = (id) => {
-        setTaskList(taskList.map((task)=> task.id === id ? {...task, checked: !task.checked} : task));
+    const favorite = (id) => {
+        setTaskList(taskList.map((movie)=> movie.id === id ? {...movie, checked: !movie.checked} : movie));
     };
-    
-    return <TaskContext.Provider value={{taskList, taskEdit, deleteTask, checkTask, addTask, editTask, updateTask}}>{children}</TaskContext.Provider>;
+
+    return <TaskContext.Provider value={{taskList, taskEdit, deleteTask, checkTask: favorite, addTask, editTask, updateTask}}>{children}</TaskContext.Provider>;
 };
 
 export default TaskContext;

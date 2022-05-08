@@ -1,10 +1,8 @@
 import React from 'react';
-import Tasks from '../Tasks/Tasks';
-import AddTask from "../Tasks/AddTask";
+import Movies from '../Movies/Movies';
 import Header from './Header';
 import Footer from './Footer';
 import Navigation from './Navigation';
-import Users from '../User/Users';
 
 export default function Home() {
     return (
@@ -12,9 +10,7 @@ export default function Home() {
         <Header />
         <Navigation />
         <div className="container">
-          <Users />
-          <AddTask />
-          <Tasks />
+          <Movies />
       </div>
       <Footer />
       </>

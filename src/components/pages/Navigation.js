@@ -20,13 +20,6 @@ export default function Navigation() {
                     </Card>
                 </Link>
             </li>
-            <li>
-                <Link to="/tasklist">
-                    <Card>
-                        <h3>Task List</h3>
-                    </Card>
-                </Link>
-            </li>
         </ul>
     </nav>
   )

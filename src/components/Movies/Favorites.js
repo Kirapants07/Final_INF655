@@ -1,5 +1,5 @@
 import React from "react";
-import Task from "./Task";
+import Movie from "./Movie";
 import { useState, useContext } from "react";
 import TaskContext from "../context/TaskContext";
 import SearchBar from "./SearchBar";
@@ -7,6 +7,8 @@ import SearchBar from "./SearchBar";
 export default function Tasks() {
 const {taskList} = useContext(TaskContext);
 const [search, setSearch] =useState('');
+
+//Needs to fetch movie ids from user's firebase, then fetch each movie info from API.
 
 const result =taskList.filter((task) => 
   task.title.toLowerCase().includes(search.toLowerCase()))
@@ -23,7 +25,7 @@ const result =taskList.filter((task) =>
     <span>
         <SearchBar search={search} setSearch={setSearch} />
       {result.map((task) => (
-        <Task 
+        <Movie 
         key={task.id}
         id={task.id} 
         title={task.title} 

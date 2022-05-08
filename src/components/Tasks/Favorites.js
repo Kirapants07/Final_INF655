@@ -8,6 +8,8 @@ export default function Tasks() {
 const {taskList} = useContext(TaskContext);
 const [search, setSearch] =useState('');
 
+//Needs to fetch movie ids from user's firebase, then fetch each movie info from API.
+
 const result =taskList.filter((task) => 
   task.title.toLowerCase().includes(search.toLowerCase()))
 

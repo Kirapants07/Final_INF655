@@ -101,6 +101,15 @@ li a:hover {
   right: 60px;
 }
 
+.favorite {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
 .check{
   text-align: center;
   width: 20px;
