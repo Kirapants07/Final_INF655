@@ -6,8 +6,9 @@ import GetMovies from './GetMovies';
 
 export default function Movies() {
     const [search, setSearch] = useState('');
+    
     const result = GetMovies(search);
-
+    
   if (!result || result.length === 0){
     return (
       <span>

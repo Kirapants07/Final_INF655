@@ -11,16 +11,17 @@ export default function GetMovies(search) {
 
     useEffect (()=>{
         const fetchMovies = async () =>{
-            try{
-                const response =  await fetch(`https://api.themoviedb.org/3/search/movie?api_key=2cc400c668df650508e7074fd7e11e01&query=${search}`);
-                const movieList = await response.json();
-                setMovieData(movieList);
-            } catch (err) {
-                console.log(err);
+            if (search){
+                try{
+                    const response =  await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`);
+                    const movieList = await response.json();
+                    setMovieData(movieList);
+                } catch (err) {
+                    console.log(err);
+                }
+              }
+              fetchMovies();
             }
-          }
-
-          fetchMovies();
     }, [search] )
     
     console.log(movieData);
