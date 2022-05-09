@@ -6,24 +6,21 @@ import SearchBar from "./SearchBar";
 export default function GetMovies(search) {
     
     const [movieData, setMovieData] = useState([]);
+    const [movieById, setMovieByID] = useState([]);
     const API_KEY = '2cc400c668df650508e7074fd7e11e01';
+    const URL_BASE_GENRELIST = "https://api.themoviedb.org/3/genre/movie/list?";
+    const URL_BASE_SEARCHMOVIES = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`;
+    const MOVIE_ID= "550";
+    const URL_DIRECTOR= `https://api.themoviedb.org/3/movie/${MOVIE_ID}?api_key=${API_KEY}&append_to_response=credits`; //result.credits.crew[12].name
+    const URL_TRAILER=`http://api.themoviedb.org/3/movie/${MOVIE_ID}?api_key=${API_KEY}&append_to_response=videos;` //link is https://www.youtube.com/watch?v=${result.results[0].key}
 
     useEffect (()=>{
         const fetchMovies = async () =>{
             if (search){
                 try{
-                    const response =  await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`);
+                    const response =  await fetch(URL_BASE_SEARCHMOVIES);
                     const movieList = await response.json();
                     setMovieData(movieList.results);
-                    // setMovieData({}
-                    //     "title": movieList.results[0].original_title,
-                    //     // "director":
-                    //     // "category":
-                    //     // "year":
-                    //     // "image":
-                    //     // "trailer":
-                    //     // "ratings":
-                    // });
                 } catch (err) {
                     console.log(err);
                 }
@@ -32,8 +29,28 @@ export default function GetMovies(search) {
             fetchMovies();
     }, [search] )
 
+    console.log(movieData);
+
+    useEffect (()=>{
+        const fetchMoviesByID = async () =>{
+            if (search){
+                try{
+                    const response =  await fetch(`http://api.themoviedb.org/3/movie/${MOVIE_ID}?api_key=${API_KEY}&append_to_response=videos`);
+                    const movieInfo = await response.json();
+                    setMovieByID([movieInfo]);
+                } catch (err) {
+                    console.log(err);
+                }
+              }
+            }
+            fetchMoviesByID();
+    }, [search] )
+
+    //console.log(movieById);
+
     let movieArray = movieData.map(key => {
       let movie = {
+        "id": key.id,
         "title": key.original_title,
         //"director":
         "category": key.genre_ids, //need to link to category names
@@ -55,9 +72,6 @@ export default function GetMovies(search) {
       .then((data)=>{
           let baseImageURL = data.images.secure_base_url;
           let configData = data.images;
-          //console.log('config:', data);
-          //console.log('config fetched');
-          //result();
           
       })
       .catch(function(err){
