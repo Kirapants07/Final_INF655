@@ -8,7 +8,7 @@ export default function Movies() {
     const [search, setSearch] = useState('');
     
     const result = GetMovies(search);
-    
+
   if (!result || result.length === 0){
     return (
       <span>
@@ -20,14 +20,19 @@ export default function Movies() {
   return (
     <span>
         <SearchBar search={search} setSearch={setSearch} />
+        {result.map((movie) => (
         <Movie 
-        // key={movie.id}
-        // id={movie.id} 
-        //title={result.title} 
-        // description={movie.description} 
-        // checked ={movie.checked}
-        // task = {movie}
+        title={movie.title} 
+        director={movie.director} 
+        category={movie.category} 
+        year={movie.year} 
+        image={movie.image} 
+        trailer={movie.trailer} 
+        ratings={movie.ratings} 
+        checked ={movie.checked}
+        movie = {movie}
         />
+      ))}
     </span>
   );
 }

@@ -5,8 +5,7 @@ import SearchBar from "./SearchBar";
 
 export default function GetMovies(search) {
     
-    console.log(search);
-    const [movieData, setMovieData] = useState({});
+    const [movieData, setMovieData] = useState([]);
     const API_KEY = '2cc400c668df650508e7074fd7e11e01';
 
     useEffect (()=>{
@@ -15,16 +14,38 @@ export default function GetMovies(search) {
                 try{
                     const response =  await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${search}`);
                     const movieList = await response.json();
-                    setMovieData(movieList);
+                    setMovieData(movieList.results);
+                    // setMovieData({}
+                    //     "title": movieList.results[0].original_title,
+                    //     // "director":
+                    //     // "category":
+                    //     // "year":
+                    //     // "image":
+                    //     // "trailer":
+                    //     // "ratings":
+                    // });
                 } catch (err) {
                     console.log(err);
                 }
               }
-              fetchMovies();
             }
+            fetchMovies();
     }, [search] )
-    
-    console.log(movieData);
+
+    let movieArray = movieData.map(key => {
+      let movie = {
+        "title": key.original_title,
+        //"director":
+        "category": key.genre_ids, //need to link to category names
+        "year": key.release_date,
+        "image": key.poster_path, //need to fetch
+        "trailer": key.video, //need to link
+        "ratings": key.popularity
+      };
+      return movie;
+    });
+
+    console.log(movieArray);
 
     const getConfig = () => {
       const result = fetch(`https://api.themoviedb.org/3/configuration?api_key=${API_KEY}`)
@@ -45,16 +66,5 @@ export default function GetMovies(search) {
   }
 
 
-  return (
-    <span>
-        <Movie 
-        // key={movie.id}
-        // id={movie.id} 
-        //title={result.title} 
-        // description={movie.description} 
-        // checked ={movie.checked}
-        // task = {movie}
-        />
-    </span>
-  );
+  return (movieArray);
 }
